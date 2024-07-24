@@ -1,0 +1,16 @@
+{
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "[python]": {
+      "editor.formatOnSave": true,
+      "editor.formatOnSaveMode": "file"
+    },
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      
+    ]
+  }
+  
