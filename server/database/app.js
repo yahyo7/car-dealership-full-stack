@@ -86,6 +86,7 @@ app.get('/fetchDealer/:id', async (req, res) => {
   }
 });
 
+
 //Express route to insert review
 app.post('/insert_review', express.raw({ type: '*/*' }), async (req, res) => {
   data = JSON.parse(req.body);
@@ -112,6 +113,7 @@ app.post('/insert_review', express.raw({ type: '*/*' }), async (req, res) => {
     res.status(500).json({ error: 'Error inserting review' });
   }
 });
+
 
 // Start the Express server
 app.listen(port, () => {

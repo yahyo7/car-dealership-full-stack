@@ -36,20 +36,35 @@ const Dealer = () => {
     }
   }
 
-  const get_reviews = async ()=>{
+  const get_reviews = async () => {
+  try {
     const res = await fetch(reviews_url, {
       method: "GET"
     });
-    const retobj = await res.json();
     
-    if(retobj.status === 200) {
-      if(retobj.reviews.length > 0){
-        setReviews(retobj.reviews)
+    if (!res.ok) {
+      throw new Error(`Error: ${res.status}`);
+    }
+    
+    const retobj = await res.json();
+
+    // Log the response object to verify its structure
+    console.log('Reviews response:', retobj);
+
+    if (retobj.status === 200) {
+      if (retobj.reviews && retobj.reviews.length > 0) {
+        setReviews(retobj.reviews);
       } else {
         setUnreviewed(true);
       }
+    } else {
+      console.error('Unexpected response status:', retobj.status);
     }
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
   }
+  }
+
 
   const senti_icon = (sentiment)=>{
     let icon = sentiment === "positive"?positive_icon:sentiment==="negative"?negative_icon:neutral_icon;
